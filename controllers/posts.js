@@ -344,7 +344,7 @@ putBio: async (req, res) =>{
       Name: req.body.name,
       Nickname: req.body.nickname,
       Age: req.body.age,
-      Sign: req.body.sign[0],
+      Sign: req.body.sign,
       favoriteMovie: req.body.favoriteMovie,
       favoriteFood: req.body.favoriteFood,
       favoriteArtist: req.body.favoriteArtist,

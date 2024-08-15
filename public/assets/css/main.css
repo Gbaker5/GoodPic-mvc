@@ -3988,9 +3988,7 @@
 		background-color: white;
 	}
 
-	input[type="file"] {
-		display: none;
-	}
+	
 
 	.custom-upload{
 		background-color: #86beda;
