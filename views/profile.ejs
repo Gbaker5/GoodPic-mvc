@@ -41,10 +41,10 @@
 			<!-- Banner -->
 				<section id="banner">
                     <section>
-                        <img class="profile-img" src="../images/zack2.jpg" alt="profile picture">
+                        <img class="profile-img" src="<%=profile[0].profilePic%>" alt="profile picture">
                     </section>
 					
-					<p>Zack Attack</p>
+					<p><%=bio.Nickname%></p>
 					<ul class="actions special">
 						
 						<li><a href="#" class="button">Edit <i class="fa-regular fa-pen-to-square"></i></a></li>
@@ -56,30 +56,31 @@
 
 					<section class="box special">
 						<header class="major">
-							<h2>Email: blah@blah.com
+							<h2>Email: <%=thisUser.email%>
 							<br />
-							Username: Blah the Blabbityblah</h2>
+							Username: <%=thisUser.userName%></h2>
 							<p>Favorite Quote: "Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
 							adipiscing nunc adipiscing. Condimentum turpis massa."</p>
 						</header>
-						<span class="image featured"><img src="../images/cam1.webp" alt="" /></span>
+						<span class="image featured"><img src="../img/cam1.webp" alt="" /></span>
 					</section>
 
 					<section class="box special features">
+                        <div><a href="/initialBio">Edit Bio</a></div>
 						<div class="features-row">
 							<section>
 								<span class="icon solid major fa-solid fa-signature accent2"></span>
 								<h3>What do we call you?</h3>
-								<p>Name:
-                                <br>Nickname:
+								<p>Name:  <%=bio.Name%>
+                                <br>Nickname: <%=bio.Nickname%>
                                 </p>
 							</section>
 							<section>
 								<span class="icon solid major fa-regular fa-star accent3"></span>
 								<h3>Lets get astrological</h3>
-								<p>Age:
+								<p>Age: <%=bio.Age%>
                                     <br>
-                                    Zodiac:
+                                    Zodiac: <%=bio.Sign%>
                                 </p>
 							</section>
 						</div>
@@ -87,16 +88,16 @@
 							<section>
 								<span class="icon solid major fa-regular fa-heart accent4"></span>
 								<h3>Your favorites</h3>
-								<p>Favorite Food:
-                                    <br>Favorite Movie:
-                                    <br>Favorite Artist:
-                                    <br>Favorite Song:
+								<p>Favorite Food: <%=bio.favoriteFood%>
+                                    <br>Favorite Movie: <%=bio.favoriteMovie%>
+                                    <br>Favorite Artist: <%=bio.favoriteArtist%>
+                                    <br>Favorite Song: <%=bio.favoriteSong%>
                                 </p>
 							</section>
 							<section>
 								<span class="icon solid major fa-regular fa-face-grin-tongue-squint accent5"></span>
 								<h3>Whats the coolest thing about you?</h3>
-								<p>Coolest:</p>
+								<p>Coolest: <%=bio.Coolest%></p>
 							</section>
 						</div>
 					</section>
@@ -112,10 +113,10 @@
                     </section>
 					
 					<div class="box">
-						<form action="/signup" method="POST"> <!--Submit form-->
+						
 							<div class="row gtr-50 gtr-uniform">
 							
-                                <form action="/"  enctype="multipart/form-data" method="POST">
+                                <form action="/post/createPost"  enctype="multipart/form-data" method="POST">
          
                                     <div class="col-12">
                                       <label for="imageUpload" class="custom-upload">
@@ -130,6 +131,15 @@
                                     </div>
                                     <div class="col-12">
                                         <p>This image must be a .jpg, jpeg, or .png file.</p>
+                                    </div>
+
+                                    <div class="mb-3 col-6">
+                                        <label for="title" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="title" name="title">
+                                    </div>
+                                    <div class="mb-3 col-12">
+                                        <label for="caption" class="form-label">Caption</label>
+                                        <input type="text" class="form-control" id="caption" name="caption">
                                     </div>
                                    
                                     <div>
@@ -149,7 +159,7 @@
 				</section>
 
 					<div class="row">
-						<div class="col-6 col-12-narrower">
+						<!--<div class="col-6 col-12-narrower">
 
 							<section class="box special">
 								<span class="image featured"><img src="../images/porsche2.jpg" alt="post" /></span>
@@ -160,31 +170,29 @@
 								</ul>
 							</section>
 
-						</div>
+						</div>-->
+
+                        <% for(var i=0; i<posts.length; i++) {%>
 						<div class="col-6 col-12-narrower">
 
 							<section class="box special">
-								<span class="image featured"><img src="../images/camaro1.jpg" alt="" /></span>
-								<h3>Camaro zl1 2023</h3>
-								<p>The sexiest thing I've driven in a while</p>
+                                <!--<a href="/post/<%= posts[i]._id%>">
+ 
+                                </a>-->
+                                <span class="image featured"><img src="<%= posts[i].image%>" alt="post" /></span>
+								
+								<h3><%=posts[i].title%></h3>
+								<p><%=posts[i].caption%></p>
 								<ul class="actions special">
-									<li><a href="post.html" class="button alt">View Post</a></li>
+									<li><a href="/post/<%= posts[i]._id%>" class="button alt">View Post</a></li>
 								</ul>
 							</section>
 
 						</div>
-                        <div class="col-6 col-12-narrower">
+                        <% } %>
 
-							<section class="box special">
-								<span class="image featured"><img src="../images/audi1.jpg" alt="post" /></span>
-								<h3>Audi A6</h3>
-								<p>A dream ride</p>
-								<ul class="actions special">
-									<li><a href="post.html" class="button alt">View Post</a></li>
-								</ul>
-							</section>
+                        
 
-						</div>
 					</div>
 
 				</section>

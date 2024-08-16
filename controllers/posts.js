@@ -42,8 +42,10 @@ module.exports = {
       const posts = await Post.find({ user: req.user.id }); //find all posts in database by user
       const profile = await Profile.find({ user: req.user.id }).sort({ createdAt: "desc" }); //The profile.find finds all profile pics from that user and displays in an array. the sort fuction sorts them in descending order (in the ejs i choose the first object on the list)
       const bio = await Bio.findOne({User: req.user.id})
-      
-      res.render("profile.ejs", { posts: posts, profile: profile, user: req.user, bio: bio}); //renders profile page with post array, profile array, and user in ejs page
+      const user = await User.findOne({_id: req.user.id})
+      console.log(bio)
+
+      res.render("profile.ejs", { posts: posts, profile: profile, user: req.user, bio: bio, thisUser: user}); //renders profile page with post array, profile array, and user in ejs page
 
       
     } catch (err) {
@@ -331,35 +333,36 @@ putFriend: async (req,res) => {
 
 },
 //Bio
-putBio: async (req, res) =>{
- 
-  try{
-    
-    console.log(req.user.id)
-    await Bio.findOneAndUpdate(
+putBio: async (req, res) => {
+  try {
+    const updates = {};
 
-      {User: req.user.id}, 
-      { $set: {
-      User: req.user.id,
-      Name: req.body.name,
-      Nickname: req.body.nickname,
-      Age: req.body.age,
-      Sign: req.body.sign,
-      favoriteMovie: req.body.favoriteMovie,
-      favoriteFood: req.body.favoriteFood,
-      favoriteArtist: req.body.favoriteArtist,
-      favoriteSong: req.body.favoriteSong,
-      Coolest: req.body.cool,
+    // Loop through each field in the request body
+    for (const key in req.body) {
+      // Only add the field to the updates object if it has a value
+      if (req.body[key]) {
+        updates[key] = req.body[key];
       }
-      },
-      {upsert:true});
-      console.log(req.body.sign)
+    }
+
+    // Ensure the User field is included in the updates
+    updates.User = req.user.id;
+    console.log(updates)
+    // Update the Bio document
+    await Bio.findOneAndUpdate(
+      { User: req.user.id },
+      { $set: updates },
+      { upsert: true }
+    );
+
     console.log("Updated Bio!!!");
     res.redirect("/profile");
 
-} catch (err){
-  console.log(err)
-}
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("An error occurred");
+  }
 },
+
 
 };
