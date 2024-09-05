@@ -1,2 +1,233 @@
 <!---->
-<h1>feed</h1>
+
+
+<head>
+    <title>Feed</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script src="https://kit.fontawesome.com/d7ccb43ad1.js" crossorigin="anonymous"></script>
+</head>
+<body class="landing is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+            <header id="header" class="alt">
+                <h1><a href="index.html">GoodPic</a> by KalaniTech</h1>
+                <nav id="nav">
+                    <ul>
+                        <li>
+                            <form method="post" action="#">
+                                <div class="row2 search">
+                                    <div class="col-9 searchbox">
+                                        <input class="searchbar" type="text" name="query" id="query" value="" placeholder="Query" />
+                                    </div>
+                                    <div class="col-3 searchbutton">
+                                        <input type="submit" value="Search" class="fit" />
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <li><a href="index.html">Home</a></li>
+                        <li>
+                            <a href="#" class="icon solid fa-angle-down"><i class="fa-solid fa-bars"></i></a>
+                            <ul>
+                                <div>
+                                    <li><img class="profile-img-small" src="../images/zack2.jpg" alt="profile picture"></li>
+                                    
+                                </div>
+                                <li><a href="feed.html">Feed</a></li>
+                                <li><a href="#">Friends</a></li>
+                                
+                                
+                            </ul>
+                        </li>
+                        <li><a href="#" class="button">Logout</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+        <!-- Banner -->
+            <section id="banner">
+                <section class="bannersec">
+                    <section class="bannersec2">
+                        <h2>The Feed</h2>
+                        <span>Explore all the posts from around the world</span>
+                    </section>
+                   
+                </section>
+                
+                
+            </section>
+
+        <!-- Main -->
+            <section id="main" class="container">
+
+                <div class="row">
+                    <% for(var i=0; i<posts.length; i++) {%>
+						<div class="col-6 col-12-narrower">
+
+							<section class="box special">
+                                <!--<a href="/post/<%= posts[i]._id%>">
+ 
+                                </a>-->
+                                <span class="image featured"><img src="<%= posts[i].image%>" alt="post" /></span>
+								
+								<h3><%=posts[i].title%></h3>
+								<p><%=posts[i].caption%></p>
+								<ul class="actions special">
+									<li><a href="/post/<%= posts[i]._id%>" class="button alt">View Post</a></li>
+								</ul>
+							</section>
+
+						</div>
+                        <% } %>
+
+                   <!--- <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/camaro1.jpg" alt="" /></span>
+                            <h3>Camaro zl1 2023</h3>
+                            <p>The sexiest thing I've driven in a while</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/audi1.jpg" alt="post" /></span>
+                            <h3>Audi A6</h3>
+                            <p>A dream ride</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/camaro2.jpg" alt="" /></span>
+                            <h3>Camaro zl1 2024</h3>
+                            <p>Tearing it up in the desert</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/lambo.webp" alt="post" /></span>
+                            <h3>Fall Lambo Shoot</h3>
+                            <p>Watch my doors rise in 'Fall'</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/mercedes.jpg" alt="" /></span>
+                            <h3>Mercedes AMG</h3>
+                            <p>Caution! This thing is sick. </p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/eagle.jpg" alt="post" /></span>
+                            <h3>Bald Eagle</h3>
+                            <p>Merica!</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/building.jpg" alt="" /></span>
+                            <h3>The sri surgernce</h3>
+                            <p>My favorite building</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/newyork.jpg" alt="post" /></span>
+                            <h3>New York</h3>
+                            <p>The city that never sleeps</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="col-6 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="../images/flower.jpg" alt="" /></span>
+                            <h3>Flowers</h3>
+                            <p>The smell is amazing</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button alt">View Post</a></li>
+                            </ul>
+                        </section>
+
+                    </div> -->
+                </div> 
+
+            </section>
+
+        <!-- CTA -->
+            <section id="cta">
+
+                <ul class="actions special">
+                    <li><a href="profile.html" class="button alt">Return to Profile</a></li>
+                </ul>
+
+            </section>
+
+        <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                    <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+                    <li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </footer>
+
+    </div>
+
+    <!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.dropotron.min.js"></script>
+        <script src="../assets/js/jquery.scrollex.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+
+</body>

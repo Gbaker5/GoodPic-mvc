@@ -1,0 +1,153 @@
+<head>
+    <title>Post</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script src="https://kit.fontawesome.com/d7ccb43ad1.js" crossorigin="anonymous"></script>
+</head>
+<body class="landing is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+            <header id="header" class="alt">
+                <h1><a href="index.html">GoodPic</a> by KalaniTech</h1>
+                <nav id="nav">
+                    <ul>
+                        <li>
+                            <form method="post" action="#">
+                                <div class="row2 search">
+                                    <div class="col-9 searchbox">
+                                        <input class="searchbar" type="text" name="query" id="query" value="" placeholder="Query" />
+                                    </div>
+                                    <div class="col-3 searchbutton">
+                                        <input type="submit" value="Search" class="fit" />
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <li><a href="index.html">Home</a></li>
+                        <li>
+                            <a href="#" class="icon solid fa-angle-down"><i class="fa-solid fa-bars"></i></a>
+                            <ul>
+                                <div>
+                                    <li><a href="profile.html"><img class="profile-img-small" src="../images/zack2.jpg" alt="profile picture"></a></li>
+                                    
+                                </div>
+                                <li><a href="feed.html">Feed</a></li>
+                                <li><a href="#">Friends</a></li>
+                                
+                                
+                            </ul>
+                        </li>
+                        <li><a href="#" class="button">Logout</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+        <!-- Banner -->
+            <section id="banner">
+                <section class="bannersec">
+                    <section class="bannersec2">
+                        <h2>Post</h2>
+                        <span>By: <a href="profile.html">Zack Attack</a> </span>
+                    </section>
+                   
+                </section>
+                
+                
+            </section>
+
+        <!-- Main -->
+            <section id="main" class="container">
+
+                <div class="row">
+                    <div class="col-12 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src=<%= post.image%> alt="post" /></span>
+                            <h3><%=post.title%></h3>
+                            <p><%=post.caption%></p>
+                            <form class="" action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
+
+                                <button class="btn btn-primary fa fa-heart heart"></button>
+                            </form><!--Likes Button-->
+                            <span>Likes: <%=post.likes%></span>
+                            <div class="col-10 comments">
+                                <ul>
+
+                                    <%if(comments.length === 0){%>
+
+                                        <li class="nocomment-ct">
+                                            
+                                            <p class="nocomment ">No comments Yet</p>
+                                        </li>
+                        
+                                      <%}else{%>
+
+                                        <% for(var i=0; i<comments.length; i++) {%>
+                                            <li>
+                                            <a href="/guest/<%=posterId[i]%>">
+                                                <img class="commenterimg" src="<%=posterImage[i]%>" alt="commenter pic">
+                                            </a> 
+                                            <span><%=comments[i].comment%></span>
+                                            <p><%=name[i]%></p> 
+                                    
+                                            </li>
+                                            <%}%>
+                                            <% } %>
+                                   
+                                </ul>
+                                
+                            </div>
+                            <form action="/comment/createComment/<%=post._id%>" method="POST">
+                                <div>
+                                    <label for=""></label>
+                                    <input type="text" id="comment" name="comment">
+                                </div>
+                                <button type="submit" class="button alt">Post</button>
+                            </form>
+                        </section>
+
+                    </div>
+                    
+                </div>
+
+            </section>
+
+        <!-- CTA -->
+            <section id="cta">
+
+                <ul class="actions special">
+                    <li><a href="/profile" class="button alt">Return to Profile</a></li>
+                    <li><a href="/feed" class="button alt">Return to Feed</a></li>
+                </ul>
+
+            </section>
+
+        <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                    <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+                    <li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </footer>
+
+    </div>
+
+    <!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.dropotron.min.js"></script>
+        <script src="../assets/js/jquery.scrollex.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+
+</body>
