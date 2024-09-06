@@ -4008,3 +4008,49 @@
 	.heart{
 		color: #86beda;
 	}
+
+	.profileImgs-ct{
+		border: 1px solid #86beda;
+		border-radius: 10px;
+		height:400px;
+		overflow:auto;
+	}
+
+	.profileImgs-ct::-webkit-scrollbar-thumb{
+		background: green;  
+		border-radius: 10px;
+		}
+
+	.profileImgs-ct>ul{
+		list-style-type: none;
+		text-align: left;
+	}
+
+	.profileImgs-ct>ul>li{
+		margin-top: 5px;
+		padding-top: 10px;
+		width:15%;
+	}
+
+	.profileImgs-ct>ul>li:hover{
+	background-color: #86beda;
+	
+	border-radius: 10px;
+	color:white;
+	}
+
+
+
+	.profileImgs{
+		height:30%;
+		width:100%;
+		border-radius: 10px;
+	}
+
+	#profileImgs>ul>li{
+		width:20%;
+	}
+
+	.profileimg-cont{
+		
+	}

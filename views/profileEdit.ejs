@@ -1,0 +1,164 @@
+<head>
+    <title>Post</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script src="https://kit.fontawesome.com/d7ccb43ad1.js" crossorigin="anonymous"></script>
+</head>
+<body class="landing is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+            <header id="header" class="alt">
+                <h1><a href="index.html">GoodPic</a> by KalaniTech</h1>
+                <nav id="nav">
+                    <ul>
+                        <li>
+                            <form method="post" action="#">
+                                <div class="row2 search">
+                                    <div class="col-9 searchbox">
+                                        <input class="searchbar" type="text" name="query" id="query" value="" placeholder="Query" />
+                                    </div>
+                                    <div class="col-3 searchbutton">
+                                        <input type="submit" value="Search" class="fit" />
+                                    </div>
+                                </div>
+                            </form> 
+                        </li>
+                        <li><a href="/profile">Home</a></li>
+                        <li>
+                            <a href="#" class="icon solid fa-angle-down"><i class="fa-solid fa-bars"></i></a>
+                            <ul>
+                                <div>
+                                    <li><a href="profile.html"><img class="profile-img-small" src="../images/zack2.jpg" alt="profile picture"></a></li>
+                                    
+                                </div>
+                                <li><a href="feed.html">Feed</a></li>
+                                <li><a href="#">Friends</a></li>
+                                
+                                
+                            </ul>
+                        </li>
+                        <li><a href="#" class="button">Logout</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+        <!-- Banner -->
+            <section id="banner">
+                <section class="bannersec">
+                    <section class="bannersec2">
+                        <h2>Edit Profile</h2>
+                        <span>By: <a href="/profile">Zack Attack</a> </span>
+                    </section>
+                   
+                </section>
+                
+                
+            </section>
+
+        <!-- Main -->
+            <section id="main" class="container">
+
+                <div class="row">
+                    <div class="col-12 col-12-narrower">
+
+                        <section class="box special">
+                            <span class="image featured"><img src="<%=profile[0].profilePic%>" alt="post" /></span>
+                            <h2>Account Info</h2>
+                            <p><strong>User Name:</strong> <%= user.userName %></p>
+                            <p><strong>Email:</strong> <%= user.email %></p>
+                        </section>
+
+                        <section class="box special">
+                            <div class="mt-5">  <!--mt is margin top-->
+                                <div class="box">
+                                <h2>Change Profile Pic</h2>
+                                </div>
+                                <!--this is the post form-->
+                                <form action="/profileEdit"  enctype="multipart/form-data" method="POST">
+                                 
+                                  <div class="mb-3">
+                                    <label for="imgUpload" class="form-label">Image</label>
+                                    <input type="file" class="form-control" id="imageUpload" name="file">
+                                  </div>
+                                  <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                                </form>
+                              </div>
+                            </section>
+                            
+                            <section class="box special">
+                            
+                            <h2>Previous Profile Pics</h2>
+                            <div class="profileImgs-ct row" id="">
+                                <ul>
+                                    <% for(var i=0; i<profile.length; i++) {%>
+                                        <li class="profileimg-cont">
+
+                                          <img class="profileImgs" src="<%=profile[i].profilePic%>">
+                                            <form 
+                                                action="/ProfileEdit?_method=PUT"
+                                                method="POST">
+                                  
+                                                <input class="hidden" type="hidden" name="profile" value="<%=profile[i].profilePic%>">
+                                                <button class="updatebutton" type="submit">
+                                                 Update Profile
+                                                </button>
+                                            </form>
+                                          
+                                        </li>
+                                      <% } %>
+
+                                </ul>
+                                
+                            </div>
+                           
+                        </section>
+
+                    </div>
+                    
+                </div>
+
+            </section>
+
+            
+            
+                      
+
+        <!-- CTA -->
+            <section id="cta">
+
+                <ul class="actions special">
+                    <li><a href="/profile" class="button alt">Return to Profile</a></li>
+                    <li><a href="/feed" class="button alt">Return to Feed</a></li>
+                </ul>
+
+            </section>
+
+        <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                    <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+                    <li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </footer>
+
+    </div>
+
+    <!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.dropotron.min.js"></script>
+        <script src="../assets/js/jquery.scrollex.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+
+</body>
