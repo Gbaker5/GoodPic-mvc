@@ -14,6 +14,14 @@ createComment: async (req, res) => {
       console.log(req.params)
       //console.log(profile)
       //console.log(profile[0].profilePic)
+
+      const { comments } = req.body.comment;
+    
+    if (!comments || comments.trim() === '') {
+        // Handle the case where the comment is empty
+        return res.status(400).send('Comment cannot be empty');
+    }else{
+      
       await Comments.create({
         comment: req.body.comment,
         madeBy: req.user.id,
@@ -21,11 +29,27 @@ createComment: async (req, res) => {
         likes:0,
         
       });
-      
+    
       console.log("Comment has been added!");
       res.redirect("/post/"+req.params.id);
+    }
     } catch (err) {
       console.log(err);
+    }
+  
+  },
+  deleteComment: async (req, res) => {
+    try {
+      // Find post by id
+      let post = await Post.findById({ _id: req.params.id });
+      // Delete image from cloudinary
+      await cloudinary.uploader.destroy(post.cloudinaryId);
+      // Delete post from db
+      await Post.remove({ _id: req.params.id });
+      console.log("Deleted Post");
+      res.redirect("/profile");
+    } catch (err) {
+      res.redirect("/profile");
     }
   },
 }

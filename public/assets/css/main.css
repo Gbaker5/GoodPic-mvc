@@ -4024,27 +4024,50 @@
 	.profileImgs-ct>ul{
 		list-style-type: none;
 		text-align: left;
+		padding: 0;
+    	margin: 0;
+    	display: flex; /* Use flexbox */
+    	flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    	gap: 10px; /* Optional: Adds space between the images */
 	}
 
 	.profileImgs-ct>ul>li{
 		margin-top: 5px;
 		padding-top: 10px;
 		width:15%;
+		
 	}
 
-	.profileImgs-ct>ul>li:hover{
+	/*.profileImgs-ct>ul>li:hover{
 	background-color: #86beda;
-	
+	/*height:;
 	border-radius: 10px;
 	color:white;
-	}
+	}*/
+
+	
 
 
 
 	.profileImgs{
-		height:30%;
+		height:100%;
 		width:100%;
 		border-radius: 10px;
+		object-fit:cover
+	}
+
+	.updatebutton{
+		color:#86beda;
+		background-color: white;
+		border:1px solid black;
+		border-radius: 5px;
+		margin-left:5px;
+	}
+
+	.updatebutton:hover{
+		color:white;
+		background-color:#86beda ;
+		border: 1px solid white;
 	}
 
 	#profileImgs>ul>li{
@@ -4052,5 +4075,10 @@
 	}
 
 	.profileimg-cont{
+		height:150px;
 		
+	}
+
+	.d{
+		border:1px solid black
 	}

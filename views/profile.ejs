@@ -16,10 +16,10 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<h1><a href="index.html">GoodPic</a> by KalaniTech</h1>
+					<h1><a href="/">GoodPic</a> by KalaniTech</h1>
 					<nav id="nav">
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="/profile">Home</a></li>
 							<li>
 								<a href="#" class="icon solid fa-angle-down"><i class="fa-solid fa-bars"></i></a>
 								<ul>
@@ -33,7 +33,7 @@
 									
 								</ul>
 							</li>
-							<li><a href="index.html" class="button">Logout</a></li>
+							<li><a href="/logout" class="button">Logout</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -59,8 +59,7 @@
 							<h2>Email: <%=thisUser.email%>
 							<br />
 							Username: <%=thisUser.userName%></h2>
-							<p>Favorite Quote: "Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-							adipiscing nunc adipiscing. Condimentum turpis massa."</p>
+							<p>Favorite Quote: <%=bio.Quote%></p>
 						</header>
 						<span class="image featured"><img src="../img/cam1.webp" alt="" /></span>
 					</section>
@@ -122,8 +121,10 @@
                                       <label for="imageUpload" class="">
                                         
                                       <ul class="actions ">
-                                        <li><input type="file" class="form-control button" id="imageUpload" name="file"/>
-                                            <span class="uploadtext">Choose Upload File</span>    
+                                        <li>
+                                            <span class="uploadtext">Choose Upload File</span>  
+                                            <input type="file" class="form-control button" id="imageUpload" name="file"/>
+                                             
                                         </li>
                                         
                                       </ul> 

@@ -10,10 +10,10 @@
 
         <!-- Header -->
             <header id="header" class="alt">
-                <h1><a href="index.html">GoodPic</a> by KalaniTech</h1>
+                <h1><a href="/">GoodPic</a> by KalaniTech</h1>
                 <nav id="nav">
                     <ul>
-                        <li>
+                        <!--<li>
                             <form method="post" action="#">
                                 <div class="row2 search">
                                     <div class="col-9 searchbox">
@@ -24,22 +24,22 @@
                                     </div>
                                 </div>
                             </form>
-                        </li>
-                        <li><a href="index.html">Home</a></li>
+                        </li>-->
+                        <li><a href="/profile">Home</a></li>
                         <li>
                             <a href="#" class="icon solid fa-angle-down"><i class="fa-solid fa-bars"></i></a>
                             <ul>
                                 <div>
-                                    <li><a href="profile.html"><img class="profile-img-small" src="../images/zack2.jpg" alt="profile picture"></a></li>
+                                    <li><a href="/profile"><img class="profile-img-small" src="../images/zack2.jpg" alt="profile picture"></a></li>
                                     
                                 </div>
-                                <li><a href="feed.html">Feed</a></li>
-                                <li><a href="#">Friends</a></li>
+                                <li><a href="/feed">Feed</a></li>
+                                <li><a href="/friends">Friends</a></li>
                                 
                                 
                             </ul>
                         </li>
-                        <li><a href="#" class="button">Logout</a></li>
+                        <li><a href="/logout" class="button">Logout</a></li>
                     </ul>
                 </nav>
             </header>
@@ -49,7 +49,7 @@
                 <section class="bannersec">
                     <section class="bannersec2">
                         <h2>Post</h2>
-                        <span>By: <a href="profile.html">Zack Attack</a> </span>
+                        <span>By: <a href="/profile"><%=bio[0].Nickname%></a> </span>
                     </section>
                    
                 </section>
@@ -72,6 +72,16 @@
                                 <button class="btn btn-primary fa fa-heart heart"></button>
                             </form><!--Likes Button-->
                             <span>Likes: <%=post.likes%></span>
+                            <%if(post.user == user.id){ %> 
+
+                                <form
+                                  action="/post/deletePost/<%= post.id %>?_method=DELETE"
+                                  method="POST"
+                                  class="col-3"
+                                >
+                                  <button class="btn btn-primary fa fa-trash" type="submit"></button>
+                                </form> <!--Delete Buton-->
+                                <%}%>
                             <div class="col-10 comments">
                                 <ul>
 
@@ -85,6 +95,23 @@
                                       <%}else{%>
 
                                         <% for(var i=0; i<comments.length; i++) {%>
+                                            <%if(post.user == user.id){ %> 
+                                                <li>
+                                                    <a href="/guest/<%=posterId[i]%>">
+                                                        <img class="commenterimg" src="<%=posterImage[i]%>" alt="commenter pic">
+                                                    </a> 
+                                                    <span><%=comments[i].comment%></span>
+                                                    <p><%=name[i]%></p> 
+                                                    <span><form
+                                                            action="/post/deleteComment/<%= post.id %>?_method=DELETE"
+                                                            method="POST"
+                                                            class="col-3"
+                                                            >
+                                                            <button class="btn btn-primary fa fa-trash" type="submit"></button>
+                                                            </form></span> <!--Delete Buton-->
+                                                </li>
+
+                                                <%}else{%>
                                             <li>
                                             <a href="/guest/<%=posterId[i]%>">
                                                 <img class="commenterimg" src="<%=posterImage[i]%>" alt="commenter pic">
@@ -94,6 +121,7 @@
                                     
                                             </li>
                                             <%}%>
+                                            <%}%>
                                             <% } %>
                                    
                                 </ul>
@@ -102,7 +130,7 @@
                             <form action="/comment/createComment/<%=post._id%>" method="POST">
                                 <div>
                                     <label for=""></label>
-                                    <input type="text" id="comment" name="comment">
+                                    <input type="text" id="comment" name="comment" required>
                                 </div>
                                 <button type="submit" class="button alt">Post</button>
                             </form>

@@ -48,6 +48,9 @@ app.use(
       mongoUrl: mongoose.connection._connectionString, // For Mongoose 6+
       mongooseConnection: mongoose.connection, // For Mongoose 5.x
     }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, //1 day
+    }
   })
 );
 

@@ -5,6 +5,9 @@ const bioSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
+    Quote:{
+        type: String,
+    },
     Name:{
         type: String,
     

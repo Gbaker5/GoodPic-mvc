@@ -123,6 +123,7 @@ module.exports = {
 
       const profile = await Profile.find({ user: req.user.id }).sort({ createdAt: "desc" }) //profiles of the user that is logged in (this for nav pic)
       const post = await Post.findById(req.params.id); //find post in db with specific id (in ejs id is all the href/link to specific post page)
+      const bio = await Bio.find({User: req.user.id}) 
 
       let commentPosterIdArr = [];
       let commentPosterProfilePicArr = [];
@@ -180,7 +181,8 @@ module.exports = {
         name: nameArr,
         ogPoster: ogPosterImg,
         ogName: posterName,
-        posterLink: post.user
+        posterLink: post.user,
+        bio: bio
         
         //posterProfile: posterProfileImg,
       });
@@ -235,26 +237,7 @@ module.exports = {
       res.redirect("/profile");
     }
   },
-  //comments
   
-
-  
-  deleteComment: async (req, res) => {
-    try {
-      // Find post by id
-      let post = await Post.findById({ _id: req.params.id });
-      // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
-      // Delete post from db
-      await Post.remove({ _id: req.params.id });
-      console.log("Deleted Post");
-      res.redirect("/profile");
-    } catch (err) {
-      res.redirect("/profile");
-    }
-  },
-
-
 //Guest
 getGuest: async (req,res) =>{
   try{
