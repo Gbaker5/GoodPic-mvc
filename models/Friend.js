@@ -6,7 +6,8 @@ const friendSchema = new mongoose.Schema({
         ref: "User",
          },
     friend: { //This is the person being added
-        type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
         require: true,
         },
     createdAt: {

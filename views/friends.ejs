@@ -30,11 +30,11 @@
                             <a href="#" class="icon solid fa-angle-down"><i class="fa-solid fa-bars"></i></a>
                             <ul>
                                 <div>
-                                    <li><img class="profile-img-small" src="../images/zack2.jpg" alt="profile picture"></li>
+                                    <li><img class="profile-img-small" src="<%=profile[0].profilePic%>" alt="profile picture"></li>
                                     
                                 </div>
                                 <li><a href="/feed">Feed</a></li>
-                                <li><a href="/friends">Friends</a></li>
+                                <li><a href="/friends">Following</a></li>
                                 
                                 
                             </ul>
@@ -59,23 +59,21 @@
         <!--Banner End-->
         <!-- Main -->
             <section id="main" class="container">
-
+                <section class="box">
                 <div class="row">
                     <% for(var i=0; i<friends.length; i++) {%>
-                        <li class="col-6 justify-content-between mt-5 friends-pic-ct">
+                        <li class="col-2 justify-content-between mt-5 friends-pic-ct">
                           <%if(nicknames[i] == ""){%>
                             <a href="/guest/<%=friends[i].friend%>">
                             
+                              <img class="commenterimg" src="<%=profilepics[i]%>">
                               <p class="namesp"><%=names[i]%></p>
-                              
-                              <img class="friends-pic img-fluid" src="<%=profilepics[i]%>">
                             </a>
                           <%}else{%>
                             <a href="/guest/<%=friends[i].friend%>">
                             
+                              <img class="commenterimg" src="<%=profilepics[i]%>">
                               <p class="namesp"><%=nicknames[i]%></p>
-                              
-                              <img class="friends-pic img-fluid" src="<%=profilepics[i]%>">
                             </a>
                           <%}%>
                           
@@ -83,7 +81,7 @@
                       <% } %>
                    
                 </div> 
-
+            
             </section>
 
         <!-- CTA -->

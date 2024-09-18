@@ -238,9 +238,9 @@ getGuest: async (req,res) =>{
     
     const profile = await Profile.find({user: req.user.id }).sort({ createdAt: "desc" }); //The profile.find finds all profile pics from that user and displays in an array. the sort fuction sorts them in descending order (in the ejs i choose the first object on the list)
     const guestProfile = await Profile.find({user: req.params.id}).sort({ createdAt: "desc"})
-    //console.log(guestProfile[0])
+    //console.log(guestProfile)
     const theBio = await Bio.find({User: req.params.id})
-   // console.log(theBio)
+    //console.log(theBio)
     const posts = await Post.find({user: req.params.id}).sort({createdAt: "desc"})
     //console.log(posts)
     res.render("guest.ejs", {profile:profile, guestProfile: guestProfile, bio:theBio, posts:posts})
@@ -259,10 +259,16 @@ getFriends: async (req, res) =>{
     let profilepics = [];
     let nameArr = [];
     let nicknameArr = [];
+    let names = []
+  if(Friends.length == 0){
+    console.log("no friends")
+  } else{
+
+  console.log(friends.length)
 
     for(let i=0;i<friends.length;i++){
       const friendProfiles = await Profile.find({user: friends[i].friend}).sort({createdAt: "desc"})
-      //console.log(friendProfiles)
+      console.log(friendProfiles)
       const images = friendProfiles[0].profilePic
       profilepics.push(images)
 
@@ -281,6 +287,7 @@ getFriends: async (req, res) =>{
     //console.log(friends)
     res.render("friends.ejs", {profile: profile, friends: friends, profilepics: profilepics, names: nameArr, nicknames: nicknameArr})
     console.log("This is your friends list")
+  }
   } catch (err){
     console.log(err)
   }
@@ -305,7 +312,7 @@ putFriend: async (req,res) => {
     res.redirect(`/guest/${req.body.friendId}`)
     console.log("Added Friend")
   } catch (err){
-    console.log()
+    console.log("error")
   }
 
 },

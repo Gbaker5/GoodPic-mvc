@@ -28,7 +28,7 @@
                                     
                                 </div>
                                 <li><a href="/feed">Feed</a></li>
-                                <li><a href="/friends">Friends</a></li>
+                                <li><a href="/friends">Following</a></li>
                                 
                                 
                             </ul>
@@ -41,12 +41,17 @@
         <!-- Banner -->
             <section id="banner">
                 <section>
-                    <img class="profile-img" src="" alt="profile picture">
+                    <img class="profile-img" src="<%=guestProfile[0].profilePic%>" alt="profile picture">
                 </section>
                 
-                <p><%=bio.Nickname%></p>
+                <p><%=bio[0].Nickname%></p>
                 <ul class="actions special">
-                    
+                    <li>
+                        <form action="/friends?_method=PUT" method="POST">
+                            <input id="hidden" type="text" name="friendId" value="<%=guestProfile[0].user%>">
+                            <button type="submit">Follow</button>
+                        </form>
+                    </li>
                 </ul>
             </section>
 
@@ -55,9 +60,9 @@
 
                 <section class="box special">
                     <header class="major">
-                        <h2>Nickname:</h2>
+                        <h2>Nickname: <%=bio[0].Nickname%></h2>
                         <br>
-                        <p>Favorite Quote: <%=bio.Quote%></p>
+                        <p>Favorite Quote: <%=bio[0].Quote%></p>
                     </header>
                     <span class="image featured"><img src="../img/cam1.webp" alt="" /></span>
                 </section>
@@ -68,16 +73,16 @@
                         <section>
                             <span class="icon solid major fa-solid fa-signature accent2"></span>
                             <h3>What do we call you?</h3>
-                            <p>Name:  <%=bio.Name%>
-                            <br>Nickname: <%=bio.Nickname%>
+                            <p>Name:  <%=bio[0].Name%>
+                            <br>Nickname: <%=bio[0].Nickname%>
                             </p>
                         </section>
                         <section>
                             <span class="icon solid major fa-regular fa-star accent3"></span>
                             <h3>Lets get astrological</h3>
-                            <p>Age: <%=bio.Age%>
+                            <p>Age: <%=bio[0].Age%>
                                 <br>
-                                Zodiac: <%=bio.Sign%>
+                                Zodiac: <%=bio[0].Sign%>
                             </p>
                         </section>
                     </div>
@@ -85,16 +90,16 @@
                         <section>
                             <span class="icon solid major fa-regular fa-heart accent4"></span>
                             <h3>Your favorites</h3>
-                            <p>Favorite Food: <%=bio.favoriteFood%>
-                                <br>Favorite Movie: <%=bio.favoriteMovie%>
-                                <br>Favorite Artist: <%=bio.favoriteArtist%>
-                                <br>Favorite Song: <%=bio.favoriteSong%>
+                            <p>Favorite Food: <%=bio[0].favoriteFood%>
+                                <br>Favorite Movie: <%=bio[0].favoriteMovie%>
+                                <br>Favorite Artist: <%=bio[0].favoriteArtist%>
+                                <br>Favorite Song: <%=bio[0].favoriteSong%>
                             </p>
                         </section>
                         <section>
                             <span class="icon solid major fa-regular fa-face-grin-tongue-squint accent5"></span>
                             <h3>Whats the coolest thing about you?</h3>
-                            <p>Coolest: <%=bio.Coolest%></p>
+                            <p>Coolest: <%=bio[0].Coolest%></p>
                         </section>
                     </div>
                 </section>
@@ -105,20 +110,35 @@
                 <section class="box special">
                     <header>
                         <h2>Following</h2>
-                        <p>"This person" is following....<i class="fa-regular fa-face-grin-wink"></i></p>
+                        <p><strong><%=bio[0].Nickname%></strong> is following....<i class="fa-regular fa-face-grin-wink"></i></p>
                     </header>
                 </section>
                 
                 <div class="box">
                     
-                        <div class="row gtr-50 gtr-uniform">
-                        
-                              
-                           
+                    <h2>Following</h2>
+                    <div class="profileImgs-ct row" id="">
+                        <ul>
+                            <% for(var i=0; i<profile.length; i++) {%>
+                                <li class="profileimg-cont">
 
-                         
+                                  <img class="profileImgs" src="<%=profile[i].profilePic%>">
+                                    <form 
+                                        action="/ProfileEdit?_method=PUT"
+                                        method="POST">
+                          
+                                        <input class="hidden" type="hidden" name="profile" value="<%=profile[i].profilePic%>">
+                                        <button class="updatebutton" type="submit">
+                                         Update Profile
+                                        </button>
+                                    </form>
+                                  
+                                </li>
+                              <% } %>
+
+                        </ul>
                         
-                        </div>
+                    </div>
                       
                 </div>
             </section>

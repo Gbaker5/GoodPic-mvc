@@ -4082,3 +4082,22 @@
 	.d{
 		border:1px solid black
 	}
+
+	#hidden{
+		display: none;
+	}
+
+	.friends-pic-ct{
+		list-style-type: none;
+		border-radius: 5px;
+		padding-top: 5px;
+	}
+
+	.friends-pic-ct:hover{
+		background-color: #86beda;
+	
+	}
+
+	.friends-pic-ct:hover > a > p{
+		color:white;
+	}
