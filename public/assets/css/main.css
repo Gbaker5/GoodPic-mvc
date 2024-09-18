@@ -4056,12 +4056,28 @@
 		object-fit:cover
 	}
 
+	.visitbutton{
+		color:#86beda;
+		background-color: white;
+		border:1px solid black;
+		border-radius: 5px;
+		margin-left:5px;
+		width:100%;
+	}
+
+	.visitbutton:hover{
+		color:white;
+		background-color:#86beda ;
+		border: 1px solid white;
+	}
+
 	.updatebutton{
 		color:#86beda;
 		background-color: white;
 		border:1px solid black;
 		border-radius: 5px;
 		margin-left:5px;
+		width:100%;
 	}
 
 	.updatebutton:hover{

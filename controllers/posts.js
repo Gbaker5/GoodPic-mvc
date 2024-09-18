@@ -243,7 +243,47 @@ getGuest: async (req,res) =>{
     //console.log(theBio)
     const posts = await Post.find({user: req.params.id}).sort({createdAt: "desc"})
     //console.log(posts)
-    res.render("guest.ejs", {profile:profile, guestProfile: guestProfile, bio:theBio, posts:posts})
+
+    const friends = await Friends.find({user: req.params.id}).sort({createdAt: "desc"}) //guest friends list
+    console.log(req.params.id)
+    console.log(friends.length)
+    let friendIds = []
+    let bios = [];
+    let nicknames = []
+    let profiles = []
+    let profileImgs = []
+    
+
+    for(i=0;i<friends.length;i++){
+      //id
+      friendIds.push(friends[i].friend) //id of guests friends
+      //bios
+      const bioData = await Bio.find({User: friendIds[i]}) //bios of guests friends
+      bios.push(bioData)
+      //-->nicknames 
+      // Check if the result is an array and if it has at least one item
+      if (bioData.length > 0) {
+        nicknames.push(bioData[0].Nickname); // Access the Nickname from the first object in the array
+      } else {
+        nicknames.push(null); // Handle case where no bio is found
+      }
+      //profiles
+      const friendsProfiles = await Profile.find({user: friendIds[i]}).sort({createdAt: "desc"}) //guest friends profile sorted in descending order by created 
+      if (friendsProfiles.length > 0) {
+        profileImgs.push(friendsProfiles[0].profilePic);  // Pushing the most recent profile image
+      } else {
+        profileImgs.push(null);  // In case there are no profiles for this friend
+      }
+    }
+    //console.log(friendIds)
+    //console.log(bios)
+    //console.log(nicknames)
+    console.log(profiles)
+    console.log(profileImgs)
+
+  
+
+    res.render("guest.ejs", {profile:profile, guestProfile: guestProfile, bio:theBio, posts:posts, profileImgs: profileImgs, nicknames: nicknames, friendIds: friendIds})
   } catch (err){
     console.log("This is the guest Profile of" + req.params)
 }

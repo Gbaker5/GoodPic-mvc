@@ -119,19 +119,13 @@
                     <h2>Following</h2>
                     <div class="profileImgs-ct row" id="">
                         <ul>
-                            <% for(var i=0; i<profile.length; i++) {%>
+                            <% for(var i=0; i<friendIds.length; i++) {%>
                                 <li class="profileimg-cont">
 
-                                  <img class="profileImgs" src="<%=profile[i].profilePic%>">
-                                    <form 
-                                        action="/ProfileEdit?_method=PUT"
-                                        method="POST">
-                          
-                                        <input class="hidden" type="hidden" name="profile" value="<%=profile[i].profilePic%>">
-                                        <button class="updatebutton" type="submit">
-                                         Update Profile
-                                        </button>
-                                    </form>
+                                  <img class="profileImgs" src="<%=profileImgs[i]%>" alt="profile pics">
+                                  <a href="/guest/<%=friendIds[i]%>" class="updatebutton col-2"><%=nicknames[i]%> Page</a>
+                                    
+                                
                                   
                                 </li>
                               <% } %>
