@@ -30,7 +30,7 @@
                             <a href="#" class="icon solid fa-angle-down"><i class="fa-solid fa-bars"></i></a>
                             <ul>
                                 <div>
-                                    <li><a href="/profile"><img class="profile-img-small" src="../images/zack2.jpg" alt="profile picture"></a></li>
+                                    <li><a href="/profile"><img class="profile-img-small" src="<%=profile[0].profilePic%>" alt="profile picture"></a></li>
                                     
                                 </div>
                                 <li><a href="/feed">Feed</a></li>
@@ -48,8 +48,8 @@
             <section id="banner">
                 <section class="bannersec">
                     <section class="bannersec2">
-                        <h2>Post</h2>
-                        <span>By: <a href="/profile"><%=bio[0].Nickname%></a> </span>
+                        <h2><%=post.title%></h2>
+                        <span>By: <a href="/guest/<%=posterLink%>"><%=ogName%></a> </span>
                     </section>
                    
                 </section>
@@ -65,7 +65,7 @@
 
                         <section class="box special">
                             <span class="image featured"><img src=<%= post.image%> alt="post" /></span>
-                            <h3><%=post.title%></h3>
+                           <!-- <h3><%=post.title%></h3>-->
                             <p><%=post.caption%></p>
                             <form class="" action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
 

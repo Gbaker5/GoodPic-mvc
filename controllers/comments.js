@@ -15,12 +15,7 @@ createComment: async (req, res) => {
       //console.log(profile)
       //console.log(profile[0].profilePic)
 
-      const { comments } = req.body.comment;
-    
-    if (!comments || comments.trim() === '') {
-        // Handle the case where the comment is empty
-        return res.status(400).send('Comment cannot be empty');
-    }else{
+     
       
       await Comments.create({
         comment: req.body.comment,
@@ -32,7 +27,7 @@ createComment: async (req, res) => {
     
       console.log("Comment has been added!");
       res.redirect("/post/"+req.params.id);
-    }
+    
     } catch (err) {
       console.log(err);
     }

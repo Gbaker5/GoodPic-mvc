@@ -28,15 +28,7 @@ module.exports = {
     }
   },
 
-  getInitialBio: async (req,res) =>{
-    try{
-
-      res.render("initialBio.ejs")
-    } catch (err){
-      console.log(err)
-    }
-  },
-
+  
   getProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id }); //find all posts in database by user
@@ -59,7 +51,8 @@ module.exports = {
       const count = await Profile.countDocuments({user: req.user.id}) //counts all profile documents
       const profile = await Profile.find({ user: req.user.id }).sort({ createdAt: "desc" });//The profile.find finds all profile pics from that user and displays in an array. the sort fuction sorts them in descending order (in the ejs i choose the first object on the list)
       const obj = await Profile.find({id: req.param.id}).sort({_id: "desc"})
-      res.render("profileEdit.ejs", { profile: profile, user: req.user }); //renders profile array and user
+      const bio = await Bio.find({User: req.user.id})
+      res.render("profileEdit.ejs", { profile: profile, user: req.user, bio: bio}); //renders profile array and user
       
       
       //console.log(profile)
@@ -109,7 +102,8 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean(); //find all posts and sort in descending order putting most recent at the top
-      res.render("feed.ejs", { posts: posts }); //renders posts
+      const profile = await Profile.find({ user: req.user.id }).sort({ createdAt: "desc" }); //The profile.find finds all profile pics from that user and displays in an array. the sort fuction sorts them in descending order (in the ejs i choose the first object on the list)
+      res.render("feed.ejs", { posts: posts, profile: profile }); //renders posts
     } catch (err) {
       console.log(err);
     }
@@ -316,6 +310,18 @@ putFriend: async (req,res) => {
 
 },
 //Bio
+
+getInitialBio: async (req,res) =>{
+  try{
+    const profile = await Profile.find({ user: req.user.id }).sort({ createdAt: "desc" }); //The profile.find finds all profile pics from that user and displays in an array. the sort fuction sorts them in descending order (in the ejs i choose the first object on the list)
+    console.log(profile[0])
+
+    res.render("initialBio.ejs", {profile: profile})
+  } catch (err){
+    console.log(err)
+  }
+},
+
 putBio: async (req, res) => {
   try {
     const updates = {};
